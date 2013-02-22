@@ -1,8 +1,0 @@
-from google.appengine.ext import ndb
-import webapp2_extras.appengine.auth.models as auth_models
-
-class UserProfile(auth_models.User):
-    cv = ndb.TextProperty()
-    currcv = ndb.TextProperty()
-    # The variable to determine tutorial
-    hasStarted = ndb.StringProperty()

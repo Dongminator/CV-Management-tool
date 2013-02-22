@@ -1,8 +1,0 @@
-{% extends "layout.html" %}
-{% block title %}CVEditor{% endblock %}
-{% block head %}
-	{{ super() }}
-		<script type="text/javascript">
-		{% include "/JavaScript/start.js" %}
-		</script>
-{% endblock %}
