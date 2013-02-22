@@ -1,0 +1,38 @@
+{
+"current-cv": [
+		{
+			"title": "IBM cv",
+			"content": [
+				{
+					"category": "a",
+					"order": ["2"]
+				},
+				{
+					"category": "b",
+					"order": ["4"]
+				},
+				{
+					"category": "c",
+					"order": ["5"]
+				}
+			]
+		},
+		{
+			"title": "Google cv",
+			"content": [
+				{
+					"category": "a",
+					"order": ["1"]
+				},
+				{
+					"category": "c",
+					"order": ["5"]
+				},
+				{
+					"category": "b",
+					"order": ["3","4"]
+				}
+			]
+		}
+	]
+} 

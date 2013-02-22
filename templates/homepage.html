@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}CV Management Tool{% endblock %}
+{% block head %}
+    {{ super() }}
+	<script type="text/javascript">
+		var cv, currcv;
+		$(document).ready(function(){	
+	    	if (cv === undefined){
+	    		cv = {{ user.cv | safe }};
+	    	}
+	
+	    	if (currcv === undefined){
+	    		currcv = {{ user.currcv | safe }};
+	    	}
+			init(cv,currcv, '{{ user.hasStarted }}', "{{ user.avatar_url}}");
+		});
+		
+	</script>
+{% endblock %}

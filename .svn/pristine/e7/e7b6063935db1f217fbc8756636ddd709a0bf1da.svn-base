@@ -1,0 +1,49 @@
+{	
+	"header":{
+		"fontName": "Courier-Bold",
+		"fontSize": 20,
+		"leading": 22,
+		"spaceBefore":0,
+        "spaceAfter":10,
+		"alignment": 1
+	},
+	"header-item":{
+		"fontName": "Helvetica",
+		"fontSize": 13,
+		"leading": 15,
+		"alignment": 1
+	},
+	"category":{
+		"fontName": "Helvetica-BoldOblique",
+		"fontSize": 15,
+		"leading": 18,
+		"spaceBefore":16,
+        "spaceAfter":8,
+		"alignment": 0
+	},
+	"category-sub-item":{
+		"fontName": "Helvetica-Bold",
+		"fontSize": 14,
+		"leading": 16,
+		"spaceBefore": 10,
+        "spaceAfter": 4,
+        "leftIndent": 10, 
+		"alignment": 0
+	},
+	"category-item":{
+		"bulletText":"-",
+		"bulletIndent": 30,
+		"fontName": "Helvetica",
+		"fontSize": 12,
+		"leading" : 14,
+		"leftIndent": 40,
+		"alignment": 0
+	},
+	"profile-item":{
+		"fontName": "Helvetica",
+		"fontSize": 12,
+		"leading" : 14,
+		"leftIndent": 30,
+		"alignment": 0
+	}
+}

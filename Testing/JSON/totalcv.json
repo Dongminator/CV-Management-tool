@@ -1,0 +1,53 @@
+{
+	"header": {
+		"name": "Bond, James Bond",
+		"phone": "007",
+		"address": "Room 007, 10 Buckingham Road, MI6, London, UK, Postcode:LB00 7JB"
+	},
+	
+	"category": [
+		{
+			"title": "Profile",
+			"id": "a",
+			"item": [
+				{
+					"id": "1",
+					"description": "profile for Google Co",
+					"content": "I am a multi-lingual student persuing a degree in Computer Science."
+				},
+				{
+					"id": "2",
+					"description": "profile for IBM",
+					"content": "Pt3 student applying for the post of Operations research."
+				}
+			]
+		},
+		{
+			"title": "Education",
+			"id": "b",
+			"item": [
+				{
+					"id": "3",
+					"description": "A-levels",
+					"content": "Southampton College: 1A's 2B's and 3C's including Mathematics and ICT."
+				},
+				{
+					"id": "4",
+					"description": "University",
+					"content": "University of Southampton: 1st class in Pt1 and Pt2."
+				}
+			]
+		},
+		{
+			"title": "Work Experience",
+			"id": "c",
+			"item": [
+				{
+					"id": "5",
+					"description": "Exon consultants",
+					"content": "Exon consultants(2011): worked as part of the development team of the new exon360 software."
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,9 @@
+from base import BaseHandler
+
+class HomePageHandler(BaseHandler):
+    def get(self):
+        if self.logged_in:
+            self.render('homepage.html')
+        else:
+            self.redirect('/')
+

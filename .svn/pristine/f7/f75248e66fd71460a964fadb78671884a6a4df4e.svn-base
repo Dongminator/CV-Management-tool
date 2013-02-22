@@ -1,0 +1,18 @@
+{	
+	"header":{
+		"font": "Times-Roman",
+		"size": 16,
+		"align": "center"
+	},
+	"category":{
+		"font": "Times-Bold",
+		"size": 14,
+		"align": "left"
+	},
+	"item":{
+		"font": "Times-Roman",
+		"size": 12,
+		"align": "left",
+		"listing": "bullet"
+	}
+}

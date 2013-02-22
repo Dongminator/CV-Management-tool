@@ -1,0 +1,22 @@
+from webapp2_extras.appengine.auth.models import User 
+from google.appengine.ext.ndb import model
+
+class UserProfile(User):
+    # TODO: CV stuff to be confirmed
+    total_cv = model.JsonProperty()
+    current_cv = model.JsonProperty()
+#    history_cv = ndb.JsonProperty()
+    
+    # TODO: Need to allow to update total cv and current cv
+    def update_total_cv(self, t_cv):
+        self.total_cv = t_cv
+        
+    def update_current_cv(self, c_cv):
+        self.current_cv = c_cv
+        
+    def get_total_cv(self):
+        return self.total_cv
+    
+    def get_current_cv(self):
+        return self.current_cv   
+    

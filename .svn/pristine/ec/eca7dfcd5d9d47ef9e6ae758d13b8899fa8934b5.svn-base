@@ -1,0 +1,69 @@
+
+import sys
+sys.path.insert(0, 'reportlab.zip')
+
+from reportlab.platypus import *
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.rl_config import defaultPageSize
+from reportlab.lib.units import inch
+from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
+import json
+
+Elements = []
+PAGE_HEIGHT = defaultPageSize[1]
+
+
+def getDocument(string):
+	temp = open(string,"r") 
+	cv = json.load(temp)
+	temp.close()
+	return cv
+
+def getTemplate(string):
+	temp = open(string,"r")
+	template = json.load(temp)
+	temp.close()
+	return template
+
+def myFirstPage(canvas, doc):
+	pass
+
+def myLaterPages(canvas, doc):
+	pass
+
+def writePDF(string, cv, template):
+	headerStyle = ParagraphStyle(name = "header",
+								fontName = "Times-Roman",
+								fontSize = 16,
+								leading	 = 18,
+								alignment = TA_CENTER)
+	
+	categoryStyle = ParagraphStyle(	name = "category",
+									fontName = "Times-Bold",
+									fontSize = 14,
+									leading = 16,
+									alignment = TA_LEFT)
+
+
+	for key in cv['header']:
+		Elements.append(Paragraph(cv['header'][key], headerStyle))
+
+	for dict in cv['category']:
+		Elements.append(Paragraph(dict['title'], categoryStyle))
+		
+
+
+	Elements.insert(0,Spacer(0,10))
+	doc = SimpleDocTemplate(string)
+	doc.build(Elements, onFirstPage=myFirstPage, onLaterPages=myLaterPages)	
+
+def main():
+	cv = getDocument("cv.json")
+	template = getTemplate("template.json")
+	writePDF("cv.pdf", cv, template)
+
+if __name__ == '__main__':
+	main()
+
+
+

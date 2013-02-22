@@ -1,0 +1,11 @@
+function getTreeJson(file){
+	var treeJSON={"data": []};
+	//create JSON file for the tree
+	for(var i=0;i<file.category.length;i++){
+		treeJSON.data.push({"data":file.category[i].title,"children":[]});
+		for(var j=0;j<file.category[i].item.length;j++){
+			treeJSON.data[i].children[j]=file.category[i].item[j].description;
+		}
+	};
+	return treeJSON;
+} 

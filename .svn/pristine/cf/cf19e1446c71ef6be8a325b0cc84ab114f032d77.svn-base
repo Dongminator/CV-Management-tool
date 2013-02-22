@@ -1,0 +1,5 @@
+# Handle login here
+import webapp2
+
+class LoginPage(webapp2.RequestHandler):
+    pass

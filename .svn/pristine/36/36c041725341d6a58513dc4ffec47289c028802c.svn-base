@@ -1,0 +1,18 @@
+{	
+	"header":{
+		"font": "Times-Roman",
+		"size": 16,
+		"align": "TA_CENTER"
+	},
+	"category":{
+		"font": "Times-Bold",
+		"size": 14,
+		"align": "TA_LEFT"
+	},
+	"item":{
+		"font": "Times-Roman",
+		"size": 12,
+		"align": "TA_LEFT",
+		"bullet-type": "None"
+	}
+}

@@ -1,0 +1,35 @@
+import sys
+from secrets import SESSION_KEY
+from webapp2 import WSGIApplication, Route
+
+if 'lib' not in sys.path:
+    sys.path[0:0] = ['lib']
+
+# webapp2 config
+app_config = {
+  'webapp2_extras.sessions': {
+    'cookie_name': '_comp3001teamf_app_session',
+    'secret_key': SESSION_KEY
+  },
+  'webapp2_extras.auth': {
+#    'user_model': 'myauth_user',
+    'user_attributes': []
+  }
+}
+
+# TODO: all the routes go here
+routes = [
+    # Handle root page
+    Route('/', handler='base.RootHandler'),  
+    # Handle log out
+    Route('/logout', handler='login.LoginHandler:logout', name='logout'),
+    # Handle log in
+    Route('/auth/<provider>', handler='login.LoginHandler:_simple_auth', name='auth_login'),
+    Route('/auth/<provider>/callback', handler='login.LoginHandler:_auth_callback', name='auth_callback'),
+    # Handle user home page
+    Route('/homepage', handler='home.HomePageHandler', name='homepage'),
+    # Handle PDF export
+    Route('/export', handler='export.PDFHandler', name='export')
+]
+
+app = WSGIApplication(routes, config=app_config, debug=True)

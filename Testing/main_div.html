@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+    	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    	<script type="text/javascript" src="/static/JavaScript/jquery.jstree.js"></script>
+    	<script type="text/javascript" src="/static/JavaScript/JSONParser.js"></script>
+    	<script type="text/javascript" src="/static/JavaScript/init.js"></script>
+    	<script type="text/javascript" src="/static/JavaScript/hierarchy.js"></script>
+		<link rel="stylesheet" type="text/static/css" href="/static/css/style_div.css">
+		<link rel="stylesheet" type="text/static/css" href="/static/css/jquery-ui-1.9.2.custom.css">
+
+		<script>
+		{% raw %}
+		var cv, currcv;
+		
+		$(document).ready(function(){
+			
+			 cv = {
+			 	"header": {
+	    			"name": "Bond, James Bond",
+	    			"phone": "007",
+	    			"address": "Room 007, 10 Buckingham Road, MI6, London, UK, Postcode: LB00 7JB",
+					"gender": "male"
+	    		},
+	    		
+	    		"category": [
+	    			{
+	    				"title": "Profile",
+	    				"id": "0",
+	    				"item": [
+	    					{
+	    						"id": "3",
+	    						"description": "profile for Google Co",
+	    						"content": "I am a multi-lingual student persuing a degree in Computer Science."
+	    					},
+	    					{
+	    						"id": "4",
+	    						"description": "profile for IBM",
+	    						"content": "Pt3 student applying for the post of Operations research."
+	    					}
+	    				]
+	    			},
+	    			{
+	    				"title": "Education",
+	    				"id": "1",
+	    				"item": [
+	    					{
+	    						"id": "5",
+	    						"description": "A-levels",
+	    						"content": "Southampton College: 1A's 2B's and 3C's including Mathematics and ICT."
+	    					},
+	    					{
+	    						"id": "6",
+	    						"description": "University",
+	    						"content": "University of Southampton: 1st class in Pt1 and Pt2."
+	    					}
+	    				]
+	    			},
+	    			{
+	    				"title": "Work Experience",
+	    				"id": "2",
+	    				"item": [
+	    					{
+	    						"id": "7",
+	    						"description": "Exon consultants",
+	    						"content": "Exon consultants(2011): worked as part of the development team of the new exon360 software."
+	    					}
+	    				]
+	    			}
+	    		]
+	    	};
+
+	    	currcv={
+			"currentcv": [
+					{
+						"title": "IBM CV",
+						"content": [
+							{
+								"category": "0",
+								"order": ["4"]
+							},
+							{
+								"category": "2",
+								"order": ["7"]
+							},
+							{
+								"category": "1",
+								"order": ["6"]
+							}
+						]
+					},
+					{
+						"title": "Google CV",
+						"content": [
+							{
+								"category": "0",
+								"order": ["3"]
+							},
+							{
+								"category": "1",
+								"order": ["5","6"]
+							}
+						]
+					}
+				]
+			};
+	    	
+			init(cv,currcv);
+		});
+		{% endraw %}
+	</script>
+	</head>
+	<body>
+	<div id="container">
+		<div id="main_title"><img src="/static/img/COMP3001.jpeg">
+			<div id="navigation">
+				<ul>
+					<li class="hrz"><a href="#home">File</a></li>
+					<li class="hrz"><a href="#news">Edit</a></li>
+					<li class="hrz"><a href="#about">Help</a></li>
+					<li class="hrz"><a href="#about">About</a></li>
+					<li class="hrz"><a href="#about">Log Out</a></li>
+				</ul></div>
+			</div>
+		<div id="workspace">
+			<div id="info">
+				<div id="profile" class="profile1">
+					<div class="title">Profile
+						<div style="float:right">
+							<ul>
+								<li class="hrz"><a href="#Edit" style="width:24px">
+								<img src="/static/img/gear1.jpeg" style="margin-top:1px">
+								</a></li>
+								<li class="hrz"><a href="#Min" class="button_d" title="toggle size" style="width:24px; height:20px; font-size:10px">
+								</a></li>
+							</ul>
+							</div>
+						</div>
+					<div id="profile_sp" class="work_sp">
+						<div class="top"><img src="/static/img/profile.jpeg" align="middle"></div>
+						<p style="margin-right:10px;margin-top:10px">	
+							Name: <br>
+							Phone: <br>
+							Address: <br>
+							Gender: <br>
+						</p><br>
+					</div>
+				</div>
+				<div id="cvlist" class="cvlist1">
+					<div class="title">CV List
+					
+					<div style="float:right">
+					<a href="#" class="button_d" title="toggle size" style="width:24px; height:20px; font-size:10px"></a>
+					</div>
+					
+					</div>
+					<div id="cvlist_sp" class="work_sp">
+					
+						<!-- Adding -->
+						<div id="cvtree">
+						</div>
+						<!-- Adding -->
+					
+					</div>
+				</div>
+			</div>
+			<div id="cv" class="cv1">
+				<div class="title"><label id="cvnamelabel">Curriculum Vitae</label>
+				<div style="float:right">
+					<ul>
+					<li class="hrz"><select name="cvs" id="cvs" title="Load a CV"></select>
+					</li>
+					<li class="hrz"><a href="#M" class="button" title="Toggle hide/show all items" style="width:24px; height: 20px; font-size:10px">
+					</a></li>
+					<li class="hrz"><a href="#add" id="create-cv" title="Create a new CV" style="width:24px; height: 20px; font-size:10px">
+					</a></li>
+					<li class="hrz"><a href="#Ex" style="width:24px" title="Export to PDF"><img src="/static/img/pdf1.jpeg" style="margin-top:1px">
+						
+					</a></li>
+					<li class="hrz"><a href="#Temp" style="width:24px" title="Select template"><img src="/static/img/tems1.jpeg" style="margin-top:1px">
+						
+					</a></li>
+					</ul>
+				</div>
+				</div>
+				<div id="cv_sp" class="work_sp">
+				<!-- Adding -->
+				</div>
+			</div>
+			<div id="full" class="full1">
+			
+				<div class="title">Resources
+				<div style="float:right">
+					<ul>
+						<li class="hrz"><a href="#" class="button" title="Toggle hide/show all items" toggle="false" style="width:24px; height:20px; font-size:10px">
+						</a></li>
+						<li class="hrz"><a href="#Edit" id="create-item" title="Create a new item or category" style="width:24px; height:20px; font-size:10px">
+						</a></li>
+					</ul>
+					</div>
+				</div>
+			
+				<div id="full_sp" class="work_sp">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="dialog-form" title="Create new item">
+    	<p class="validateTips">All form fields are required.</p>
+    	<form>
+    		<fieldset>
+    		    <label for="category">Category</label>
+    			<input type="radio" name="cats" id="first" value="opt1" />
+    		    <label for="category" id="oldlabel">Select Existing : </label>
+    			<select name="category" id="category"></select>
+				<input type="radio" name="cats" id="second" value="opt2" />
+				<label for="category" id="newlabel">Create New Category:</label>
+        		<input type="text" name="category" id="category1" class="text ui-widget-content ui-corner-all"/>
+        		<label for="title">Title</label>
+        		<input type="text" name="title" id="title" value="" class="text ui-widget-content ui-corner-all" />
+        		<label for="content">Content</label>
+        		<input type="text" name="content" id="content" value="" class="text ui-widget-content ui-corner-all" />
+    		</fieldset>
+    	</form>
+	</div>
+	
+	<div id="dialog-form2" title="Create new CV">
+    	<p class="validateTips">All form fields are required.</p>
+    	<form>
+    		<fieldset>
+    		    <label for="category">CV Name:</label>
+        		<input type="text" name="cvname" id="cvname" class="text ui-widget-content ui-corner-all"/>
+    		</fieldset>
+    	</form>
+	</div>
+</body>
+</html>

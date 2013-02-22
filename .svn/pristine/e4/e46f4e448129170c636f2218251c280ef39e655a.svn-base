@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    	<script type="text/javascript" src="../JavaScript/jquery.jstree.js"></script>
+    	<script type="text/javascript" src="../JavaScript/JSONParser.js"></script>
+    	<script type="text/javascript" src="../JavaScript/init.js"></script>
+    	<script type="text/javascript" src="../JavaScript/hierarchy.js"></script>
+		<link rel="stylesheet" type="text/css" href="../stylesheets/CSS/style_div.css">
+		 <style>
+		#create-item {font-size: 10%}
+		#create-cv {font-size: 10%}
+		
+        label, input { display:block; }
+        input.text { margin-bottom:12px; width:95%; padding: .4em; }
+        fieldset {  font-size: 62.5%;padding:0; border:0; margin-top:25px; }
+        h1 {font-size: 1.2em; margin: .6em 0; }
+        .ui-dialog .ui-state-error {padding: .3em; }
+        .validateTips { border: 1px solid transparent; padding: 0.3em; }
+    	</style>
+		<script>
+		var cv, currcv;
+		window.onload = function(){
+		    
+		    cv = {
+	    		"header": {
+	    			"name": "Bond, James Bond",
+	    			"phone": "007",
+	    			"address": "Room 007, 10 Buckingham Road, MI6, London, UK, Postcode:LB00 7JB"
+	    		},
+	    		
+	    		"category": [
+	    			{
+	    				"title": "Profile",
+	    				"id": "1",
+	    				"item": [
+	    					{
+	    						"id": "4",
+	    						"description": "profile for Google Co",
+	    						"content": "I am a multi-lingual student persuing a degree in Computer Science."
+	    					},
+	    					{
+	    						"id": "5",
+	    						"description": "profile for IBM",
+	    						"content": "Pt3 student applying for the post of Operations research."
+	    					}
+	    				]
+	    			},
+	    			{
+	    				"title": "Education",
+	    				"id": "2",
+	    				"item": [
+	    					{
+	    						"id": "6",
+	    						"description": "A-levels",
+	    						"content": "Southampton College: 1A's 2B's and 3C's including Mathematics and ICT."
+	    					},
+	    					{
+	    						"id": "7",
+	    						"description": "University",
+	    						"content": "University of Southampton: 1st class in Pt1 and Pt2."
+	    					}
+	    				]
+	    			},
+	    			{
+	    				"title": "Work Experience",
+	    				"id": "3",
+	    				"item": [
+	    					{
+	    						"id": "8",
+	    						"description": "Exon consultants",
+	    						"content": "Exon consultants(2011): worked as part of the development team of the new exon360 software."
+	    					}
+	    				]
+	    			}
+	    		]
+	    	};
+
+	    	currcv={
+			"currentcv": [
+					{
+						"title": "IBM CV",
+						"content": [
+							{
+								"category": "1",
+								"order": ["5"]
+							},
+							{
+								"category": "3",
+								"order": ["8"]
+							},
+							{
+								"category": "2",
+								"order": ["7"]
+							}
+						]
+					},
+					{
+						"title": "Google CV",
+						"content": [
+							{
+								"category": "1",
+								"order": ["4"]
+							},
+							{
+								"category": "2",
+								"order": ["6","7"]
+							}
+						]
+					}
+				]
+			};
+ 
+			init(cv,currcv);
+			document.getElementById('cvs').innerHTML = arrVals(getCVS(currcv)); //load cvs on combo box
+			document.getElementById('category').innerHTML = arrVals(getCategories(cv)); //load categories on combo box
+
+			var cvName= getCVS(currcv)[0]; //Get first element of array
+
+			document.getElementById('full_sp').innerHTML = fullcvParser(cv);
+			document.getElementById('cv_sp').innerHTML = currentcvParser(cv,currcv);
+			drawTree(cv,currcv,"#cvtree");
+	// 		saveData(cv,currcv); //use for saving, link its call to something to test
+
+			addInit(lastId(cv),cv,currcv);
+			addCV(cv,currcv,getCVS(currcv));
+			editableInit(cv,currcv);
+			saveResource(cv);
+		}
+		
+	</script>
+	</head>
+	<body>
+	<div id="dialog-form" title="Create new item">
+    	<p class="validateTips">All form fields are required.</p>
+    	<form>
+    		<fieldset>
+    		    <label for="category">Category</label>
+    			<input type="radio" name="cats" id="first" value="opt1" />
+    		    <label for="category" id="oldlabel">Select Existing : </label>
+    			<select name="category" id="category"></select>
+				<input type="radio" name="cats" id="second" value="opt2" />
+				<label for="category" id="newlabel">Create New:</label>
+        		<input type="text" name="category" id="category1" class="text ui-widget-content ui-corner-all"/>
+        		<label for="title">Title</label>
+        		<input type="text" name="title" id="title" value="" class="text ui-widget-content ui-corner-all" />
+        		<label for="content">Content</label>
+        		<input type="text" name="content" id="content" value="" class="text ui-widget-content ui-corner-all" />
+    		</fieldset>
+    	</form>
+	</div>
+	
+	<div id="dialog-form2" title="Create new CV">
+    	<p class="validateTips">All form fields are required.</p>
+    	<form>
+    		<fieldset>
+    		    <label for="category">CV Name:</label>
+        		<input type="text" name="cvname" id="cvname" class="text ui-widget-content ui-corner-all"/>
+    		</fieldset>
+    	</form>
+	</div>
+	
+	<div id="container">
+		<div id="main_title"><img src="../stylesheets/images/COMP3001.jpeg">
+			<div id="navigation">
+				<ul>
+					<li class="hrz"><a href="#home">File</a></li>
+					<li class="hrz"><a href="#news">Edit</a></li>
+					<li class="hrz"><a href="#about">Help</a></li>
+					<li class="hrz"><a href="#about">About</a></li>
+					<li class="hrz"><a href="#about">Log Out</a></li>
+				</ul></div>
+			</div>
+		<div id="workspace">
+			<div id="info">
+				<div id="profile" class="profile1">
+					<div class="title">Profile
+						<div style="float:right">
+							<ul>
+								<li class="hrz"><a href="#Edit" style="width:26px"><img src="../stylesheets/images/gear1.jpeg" style="margin-top:1px">
+								<div class="tooltipcontainer">
+									<div class="tooltip"><textarea readonly rows="1" cols="7">edit profile</textarea></div>
+									</div>
+								</a></li>
+								<li class="hrz"><a href="#Min" class="button_d" style="width:26px"><img src="../stylesheets/images/mins.jpeg" style="margin-top:1px">
+									<div class="tooltipcontainer">
+										<div class="tooltip"><textarea readonly rows="1" cols="7">minimise</textarea></div>
+									</div>
+								</a class="hrz"></li>
+							</ul>
+							</div>
+						</div>
+					<div id="profile_sp" class="work_sp">
+						<div class="top"><img src="../stylesheets/images/profile.jpeg" align="middle"></div>
+						<p style="margin-right:10px;margin-top:10px">	
+							Name: <br>
+							Phone: <br>
+							Address: <br>
+							Gender:
+						</p><br>
+					</div>
+				</div>
+				<div id="cvlist" class="cvlist1">
+					<div class="title">CV List<a href="#" class="button_d" style="width:26px; background-color:#D0D0D0">
+					<img src="../stylesheets/images/mins.jpeg" style="margin-top:1px">
+						<div class="tooltipcontainer">
+							<div class="tooltip"><textarea readonly rows="1" cols="7">minimise</textarea></div>
+						</div>
+					</a></div>
+					<div id="cvlist_sp" class="work_sp">
+					
+						<!-- Adding -->
+						<div id="cvtree">
+						</div>
+						<!-- Adding -->
+					
+					</div>
+				</div>
+			</div>
+			<div id="cv" class="cv1">
+				<div class="title">Curriculum Vitae
+				<div style="float:right">
+					<ul>
+					<li class="hrz"><select name="cvs" id="cvs"></select>
+						<div class="tooltipcontainer">
+							<div class="tooltip"><textarea readonly rows="1" cols="7">change cv</textarea></div>
+						</div>
+					</li>
+					<li class="hrz"><a href="#add" id="create-cv" style="width:26px"><img src="../stylesheets/images/gear1.jpeg" style="margin-top:1px">
+						<div class="tooltipcontainer">
+							<div class="tooltip"><textarea readonly rows="1" cols="7">add cv</textarea></div>
+						</div>
+					</a></li>
+					<li class="hrz"><a href="#Ex" style="width:26px"><img src="../stylesheets/images/pdf1.jpeg" style="margin-top:1px">
+						<div class="tooltipcontainer">
+							<div class="tooltip"><textarea readonly rows="1" cols="7">export to pdf</textarea></div>
+						</div>
+					</a></li>
+					<li class="hrz"><a href="#Temp" style="width:26px"><img src="../stylesheets/images/tems1.jpeg" style="margin-top:1px">
+						<div class="tooltipcontainer">
+							<div class="tooltip"><textarea readonly rows="1" cols="8">templates</textarea></div>
+						</div>
+					</a></li>
+					<li class="hrz"><a href="#M" class="button" style="width:26px">
+						<img src="../stylesheets/images/mins.jpeg" style="margin-top:1px">
+						<div class="tooltipcontainer">
+							<div class="tooltip"><textarea readonly rows="1" cols="7">minimise</textarea></div>
+						</div>
+					</a></li>
+					</ul>
+				</div>
+				</div>
+				<div id="cv_sp" class="work_sp">
+				
+					<!-- adding -->				
+					
+					<!-- Adding -->
+						
+				</div>
+			</div>
+			<div id="full" class="full1">
+			
+				<div class="title">Resources
+				<div style="float:right">
+					<ul>
+						<li class="hrz"><a href="#Edit" id="create-item" style="width:26px"><img src="../stylesheets/images/gear1.jpeg" style="margin-top:1px">
+						<div class="tooltipcontainer">
+							<div class="tooltip"><textarea readonly rows="1" cols="7">edit profile</textarea></div>
+							</div>
+						</a></li>
+						<li class="hrz"><a href="#" class="button" style="width:26px"><img src="../stylesheets/images/mins.jpeg" style="margin-top:1px">
+							<div class="tooltipcontainer">
+								<div class="tooltip"><textarea readonly rows="1" cols="7">minimise</textarea></div>
+							</div>
+						</a class="hrz"></li>
+					</ul>
+					</div>
+				</div>
+			
+				<div id="full_sp" class="work_sp">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

@@ -1,0 +1,33 @@
+{
+    "data": [
+        {
+            "data": "CURRICULUM VITAE A",
+            "atrr": {"id" : "a"},
+            "children": [
+                {
+                    "data": "CategoryA",
+                    "children": [
+                        {
+                            "data": "ItemA",
+                            "children": [
+                                "ContentA",
+                                "ContentB"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "data": "CategoryB",
+                    "children": [
+                        {
+                            "data": "ItemB",
+                            "children": [
+                                "ContentC"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

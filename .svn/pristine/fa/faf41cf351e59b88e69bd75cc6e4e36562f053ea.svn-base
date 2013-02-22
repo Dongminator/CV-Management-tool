@@ -1,0 +1,45 @@
+<html>
+<head>
+<script>
+
+window.onload = function(){
+	
+	$('.clicktohide').siblings().hide();
+	
+	$('body').on('click', '.clicktohide',function(){
+    	$(this).siblings().slideToggle('fast');
+	});
+
+	
+	$('.draggableCat').draggable({
+		connectToSortable: ".sortableCats",
+		helper: "clone"
+	});
+	
+	$('.draggableItem').draggable({
+		connectToSortable: ".sortableItems",
+		helper: "clone"
+	});
+	
+	$('.sortableItems, .sortableCats').sortable();
+	
+	$("ul, li").disableSelection();
+	
+	$(function(){
+    	$('.editable').inlineEdit();
+    });
+}
+
+$.getJSON("pdftest/cv.json", function(data){
+	var items = [];
+	$.each(data, function(key, val){
+		items.push('<li id="' + key + '">' + val + '</li>');
+	});
+	$('<ul/>' {
+		'class': "test_list",
+		html: items.join('')		
+	}).appendTo('body');
+});
+</script>
+</head>
+</html>

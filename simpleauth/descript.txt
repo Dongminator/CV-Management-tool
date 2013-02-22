@@ -1,0 +1,3 @@
+This is the external library support for the Authentication by OpenID.
+This library cannot be modified.
+Please do not touch this library

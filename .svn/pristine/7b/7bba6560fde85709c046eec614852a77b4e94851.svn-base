@@ -1,0 +1,20 @@
+Please consider every time doing a commit. Exclude .project or .pyproject from commit
+
+
+Scripting Language Coursework - CV Management Project
+
+Server Side (Tung, Dhamu, Donglin, Truc) -
+
+	-Spell Checker
+	-Database for users
+	-Import & Export PDF
+	-Directory for each user
+	-Search engine to suggest companies
+	-Privacy (show CVs to public / private only / some group)
+
+Client Side (Jahid, Kanat, Jhim) -
+
+	-Managing entries (Add / Edit / Track)
+	-Rearranging sections (movable objects)
+	-Sidebar 
+	-Overall HCI

@@ -1,0 +1,31 @@
+function getCV(){
+	var cv;
+	$.ajax{type: "GET", url: "server.py", data: "cv", success: function(result){
+		cv = result;
+	}};
+	return cv;
+}
+
+function getCurrentCV(){
+	var currcv;
+	$.ajax{type: "GET", url: "server.py", data: "currcv", success: function(result){
+		currcv = result;
+	}};
+	return currcv;
+}
+
+function sendResource(cv){
+	var suc = "false";
+	$.ajax{type: "POST", url: "server.py" data: cv, success: function(){ 
+		suc= "true";
+	}};
+	return suc;
+}
+
+function sendData(cv, currcv){
+	var suc = "false";
+	$.ajax{type: "POST", url: "server.py" data: {cv: cv, currcv: currcv} success: function(){ 
+		suc= "true";
+	}};
+	return suc;
+}

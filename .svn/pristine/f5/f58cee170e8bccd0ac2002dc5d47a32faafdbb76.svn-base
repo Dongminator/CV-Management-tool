@@ -1,0 +1,13 @@
+import webapp2
+
+# Contain all the routing for the app
+
+config = {}
+
+app = webapp2.WSGIApplication(routes = [
+                               webapp2.Route('/', 'mainpage.mainpageHandler.MainPage'),
+                               webapp2.Route('/login/', 'login.loginHandler.LoginPage')],
+                              config = config
+                              )
+
+# Appstat : cache for the application

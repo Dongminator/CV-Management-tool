@@ -1,0 +1,90 @@
+/////////// login.py ////////////////////
+
+add_attrs['cv'] = '''{"header": {
+                    "name": "Bond, James Bond",
+                    "phone": "007",
+                    "address": "Room 007, 10 Buckingham Road, MI6, London, UK, Postcode: LB00 7JB"
+                },
+                
+                "category": [
+                    {
+                        "title": "Profile",
+                        "id": "0",
+                        "item": [
+                            {
+                                "id": "3",
+                                "description": "profile for Google Co",
+                                "content": "I am a multi-lingual student persuing a degree in Computer Science."
+                            },
+                            {
+                                "id": "4",
+                                "description": "profile for IBM",
+                                "content": "Pt3 student applying for the post of Operations research."
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Education",
+                        "id": "1",
+                        "item": [
+                            {
+                                "id": "5",
+                                "description": "A-levels",
+                                "content": "Southampton College: 1A's 2B's and 3C's including Mathematics and ICT."
+                            },
+                            {
+                                "id": "6",
+                                "description": "University",
+                                "content": "University of Southampton: 1st class in Pt1 and Pt2."
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Work Experience",
+                        "id": "2",
+                        "item": [
+                            {
+                                "id": "7",
+                                "description": "Exon consultants",
+                                "content": "Exon consultants(2011): worked as part of the development team of the new exon360 software."
+                            }
+                        ]
+                    }
+                ]
+            }'''
+        add_attrs['currcv'] = '''{
+            "currentcv": [
+                    {
+                        "title": "IBM CV",
+                        "content": [
+                            {
+                                "category": "0",
+                                "order": ["4"]
+                            },
+                            {
+                                "category": "2",
+                                "order": ["7"]
+                            },
+                            {
+                                "category": "1",
+                                "order": ["6"]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Google CV",
+                        "content": [
+                            {
+                                "category": "0",
+                                "order": ["3"]
+                            },
+                            {
+                                "category": "1",
+                                "order": ["5","6"]
+                            }
+                        ]
+                    }
+                ]
+            }'''
+            
+////////////////////////
